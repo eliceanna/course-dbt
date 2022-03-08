@@ -1,0 +1,57 @@
+version: 2
+
+models:
+  - name: addresses
+    description: Contains user address information such as address, state and country
+
+  - name: users
+    description: Contains user related information such as names, email and phone number
+    columns: 
+      - name: user_id
+        tests:
+          - not_null
+
+  - name: events
+    description: Contains event and session information such as user_id, event_type 
+    columns:
+      - name: event_id
+        tests:
+          - not_null
+
+  - name: orders
+    description: Contains order level data such as order and shipping cost, customer, status, etc
+    columns: 
+      - name: order_id
+        tests:
+          - not_null
+  
+  - name: order_items
+    description: Contains order item level data such as order_id, product and quantity
+    columns:
+      - name: order_id
+        tests: 
+          - not_null
+      - name: quantity
+        tests:
+          - not_null
+          - positive_values
+  
+  - name: products
+    description: Contains product data such as name, price and inventory
+    columns:
+      - name: product_id
+        tests: 
+          - not_null
+  
+  - name: promos
+    description: Contains promotional data such as status and discount
+    columns:
+      - name: promo_id
+        tests: 
+          - not_null
+      - name: discount
+        tests: 
+          - positive_values
+
+    
+    
