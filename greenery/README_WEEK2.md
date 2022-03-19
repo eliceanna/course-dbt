@@ -46,6 +46,7 @@ In the core folder, I added two dim tables - users and products and two fact tab
 In the marketing folder, I added one fact table that contains order data aggregated on the customer level. This is to understand which customers are valuable for the business and which ones might need more marketing effort in order to order again.
 In the product folder, I added one intermediate table to aggregate the events data, and one prod fact table to combine the aggregated events with user data. The intermediate table can be reused for other purposes as well.
 ```
+![Screenshot](screenshot.png)
 
 ## Part 1: Testing
 
