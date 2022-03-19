@@ -1,31 +1,52 @@
 version: 2
 
 models:
-  - name: addresses
+  - name: stg_addresses
     description: Contains user address information such as address, state and country
 
-  - name: users
+  - name: stg_users
     description: Contains user related information such as names, email and phone number
     columns: 
       - name: user_id
         tests:
           - not_null
+          - unique
 
-  - name: events
+  - name: stg_events
     description: Contains event and session information such as user_id, event_type 
     columns:
       - name: event_id
         tests:
           - not_null
+          - unique
+      - name: session_id
+        tests: 
+          - not_null
+      - name: user_id
+        tests: 
+          - not_null
 
-  - name: orders
+  - name: stg_orders
     description: Contains order level data such as order and shipping cost, customer, status, etc
     columns: 
       - name: order_id
         tests:
           - not_null
+          - unique
+      - name: user_id
+        tests:
+          - not_null
+      - name: order_cost
+        tests: 
+          - positive_values
+      - name: shipping_cost
+        tests:
+          - positive_values
+      - name: order_total
+        tests: 
+          - positive_values
   
-  - name: order_items
+  - name: stg_order_items
     description: Contains order item level data such as order_id, product and quantity
     columns:
       - name: order_id
@@ -36,20 +57,21 @@ models:
           - not_null
           - positive_values
   
-  - name: products
+  - name: stg_products
     description: Contains product data such as name, price and inventory
     columns:
       - name: product_id
         tests: 
           - not_null
+          - unique
   
-  - name: promos
+  - name: stg_promos
     description: Contains promotional data such as status and discount
     columns:
       - name: promo_id
         tests: 
           - not_null
-      - name: discount
+      - name: promo_discount
         tests: 
           - positive_values
 

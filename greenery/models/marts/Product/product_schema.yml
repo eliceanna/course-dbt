@@ -1,0 +1,24 @@
+version: 2
+
+models:
+  - name: fct_customer_sessions
+    description: Session level data enriched with customer info
+    columns: 
+      - name: session_id
+        description: primary key and unique identifier of the session
+      - name: user_id
+        description: foreign key to user table
+      - name: user_name
+      - name: email
+      - name: session_page_views
+        description: how many events during this sessions had the event type "page_view"
+      - name: is_order_session
+        description: returns true if an order was placed during the session
+      - name: session_first_event
+        description: timestamp of beginning of the session
+      - name: session_last_event
+        description: timestamp of the last event of the session
+      - name: session_duration_minutes
+        description: the duration of the session in minutes
+
+  

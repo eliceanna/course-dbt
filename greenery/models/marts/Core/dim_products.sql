@@ -5,8 +5,8 @@
 }}
 
 SELECT product_id
-  , name
-  , price
+  , product_name
+  , product_price
   , inventory
 
-FROM {{ source('tutorial', 'products') }}
+FROM {{ ref('stg_products') }} p

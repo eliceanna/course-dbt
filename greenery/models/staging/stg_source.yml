@@ -13,12 +13,12 @@ sources:
 
     tables:
       - name: events 
-        loaded_at_field: created_at
+        loaded_at_field: event_created_at
         description: >
           Contains events and session information
       
       - name: orders 
-        loaded_at_field: created_at
+        loaded_at_field: order_created_at
         description: >
           Contains order level information
       
@@ -35,7 +35,7 @@ sources:
           Contains promotion information
       
       - name: users
-        loaded_at_field: created_at
+        loaded_at_field: user_created_at
         description: >
           Contains user information
 

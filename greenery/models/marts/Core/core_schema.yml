@@ -1,0 +1,106 @@
+version: 2
+
+models:
+  - name: dim_users
+    description: User dimension table
+    columns: 
+      - name: user_id
+        description: the primary key of the table
+      - name: user_name
+        description: first and last name of the customer
+      - name: email 
+        description: email of the user
+      - name: phone_number 
+        description: phone number of the user
+      - name: user_created_at_utc
+        description: user registration date
+      - name: updated_at_utc
+        description: when was the data last updated
+      - name: user_address
+        description: the address of the user
+      - name: user_state
+        description: state of the user
+      - name: user_country
+        description: country of the user
+      - name: first_order_created_at_utc
+        description: timestamp of their first order
+      - name: last_order_created_at_utc
+        description: timestamp of their last order
+      - name: number_of_orders
+        description: total number of orders for that customer
+
+  - name: dim_products
+    description: Product dimension table
+    columns:
+      - name: product_id
+        description: primary key of the table
+      - name: product_name
+      - name: product_price
+      - name: inventory
+        description: what quantity do we have on stock from this product
+
+  - name: fct_orders
+    description: Fact table containing data on the order level
+    columns: 
+      - name: order_id
+        description: primary key of the table
+      - name: promo_id
+        description: foreign key to promo table
+      - name: user_id
+        description: foreign key to user table
+      - name: tracking_id
+      - name: order_created_at_utc
+        description: timestamp of when the order was placed
+      - name: estimated_delivery_at_utc
+        description: estimated delivery date
+      - name: delivered_at_utc
+        description: actual delivery date
+      - name: promo_discount
+        description: discount applied to the order
+      - name: order_cost
+        description: cost of goods sold 
+      - name: shipping_cost
+        description: cost for shipping the order
+      - name: order_total
+        description: total revenue from the order
+      - name: order_profit
+        description: revenue minus COGS, shipping cost and promo discounts
+      - name: order_margin_percentage
+        description: order profit / order revenue
+      - name: country
+        description: country of the customer who placed the order
+      - name: shipping_service
+        description: delivery service company
+      - name: order_status
+        description: status of the order
+      - name: distinct_products_order
+        description: how many distinct number of products were in the order
+      - name: total_quantity_order
+        description: total quantity of all products in the order
+      - name: is_delivered_on_time
+        description: returns true if actual delivery time is before or on the same date as the estimated delivery date
+      - name: days_from_order_to_delivery
+        description: days needed to fulfill the order - from order day to delivery day
+
+  - name: fct_events
+    description: Fact table containing data on the event level
+    columns: 
+      - name: event_id
+        description: primary key of the table and unique identifier of the event
+      - name: session_id
+        description: unique identifier of the session
+      - name: user_id
+        description: foreign key to users table
+      - name: event_type
+        description: type of the event - i.e page_view, checkout, add_to_cart, etc
+      - name: page_url
+        description: url of the page where the event was triggered
+      - name: event_created_at_utc
+        description: timestamp of the event trigger
+      - name: order_id
+        description: unique identifier of an order if one was placed during the event
+      - name: product_id
+        description: unique identifier of a product if one was added to cart during the event
+      - name: is_order_event
+        description: returns true if order_id is not null
+        
