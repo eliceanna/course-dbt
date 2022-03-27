@@ -33,7 +33,7 @@ SELECT
   , orders.user_id
   , orders.tracking_id
   -- dates
-  , orders.order_created_at_utc
+  , DATE(orders.order_created_at_utc) AS order_created_at_utc
   , orders.estimated_delivery_at_utc
   , orders.delivered_at_utc
   -- financial metrics

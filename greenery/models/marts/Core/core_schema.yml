@@ -103,4 +103,24 @@ models:
         description: unique identifier of a product if one was added to cart during the event
       - name: is_order_event
         description: returns true if order_id is not null
-        
+      
+metrics:
+  - name: orders
+    label: Orders
+    model: ref('fct_orders')
+    description: "The number of orders"
+
+    type: count
+    sql: order_id 
+
+    timestamp: order_created_at_utc
+    time_grains: [week, month]
+
+    dimensions:
+      - order_status
+      - country
+    
+    filters:
+      - field: is_delivered_on_time
+        operator: 'is'
+        value: 'true'

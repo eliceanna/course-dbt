@@ -23,5 +23,5 @@ SELECT event_id
         THEN 1 
       ELSE 0
     END AS is_order_event
-
+    
 FROM stg_events

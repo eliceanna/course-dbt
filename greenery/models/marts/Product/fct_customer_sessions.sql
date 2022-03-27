@@ -27,7 +27,7 @@ SELECT int_session_events_agg.session_id
   , int_session_events_agg.user_id
   , users.user_name
   , users.email
-  , int_session_events_agg.session_page_views
+  , int_session_events_agg.session_page_view
   , int_session_events_agg.is_order_session
   , session_duration.session_first_event
   , session_duration.session_last_event
