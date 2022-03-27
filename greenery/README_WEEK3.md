@@ -73,7 +73,5 @@ Added a macro to int_session_events_agg.sql to count event_types per session
 **Answer:** 
 ```
 Installed dbt-metrics and added a model called order_period_over_period which includes secondary calculations on the primary metric - orders such as WoW, weekly AVG for a specific month and rolling avg. Primary metric is defined in the core_schema.yml and the macro is called in the orders_period_over_period.sql
-
-[Package documentation link](https://hub.getdbt.com/dbt-labs/metrics/latest/)
- 
 ```
+[Package documentation link](https://hub.getdbt.com/dbt-labs/metrics/latest/)
