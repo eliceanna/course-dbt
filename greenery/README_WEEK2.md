@@ -11,7 +11,7 @@ _What is our user repeat rate?_
 ```WITH orders_per_user AS (
     SELECT COUNT(CASE WHEN number_of_orders > 0 THEN 1 ELSE 0 END) AS customer_with_at_least_1_order
      , COUNT(CASE WHEN number_of_orders >= 2 THEN 1 ELSE 0 END) AS customers_with_more_than_1_order
-    FROM dim_users
+    FROM dbt_elisaveta_aleksieva.dim_users
 )
 
 SELECT 
