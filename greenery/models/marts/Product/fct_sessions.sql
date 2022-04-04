@@ -7,19 +7,25 @@
 WITH base AS (
 
     SELECT 
-        product_id
+        session_id
       , COUNT(DISTINCT 
               CASE 
                 WHEN event_type = 'page_view' 
                   THEN session_id 
                   ELSE NULL 
-              END) AS product_sessions
+              END) AS page_view
       , COUNT(DISTINCT 
               CASE 
                 WHEN event_type = 'add_to_cart' 
                   THEN session_id 
                   ELSE NULL
-              END) AS product_added_to_cart
+              END) AS add_to_cart
+      , COUNT(DISTINCT
+              CASE
+                WHEN event_type = 'checkout'
+                  THEN session_id
+                  ELSE NULL
+              END) AS checkout
       , COUNT(DISTINCT 
               CASE
                 WHEN is_order_event = 1
@@ -28,23 +34,10 @@ WITH base AS (
               END) AS orders
 
     FROM {{ ref('fct_events') }}
-
-    GROUP BY product_id
-
-) , products AS (
-
-    SELECT * FROM {{ ref('dim_products') }}
+    GROUP BY 1
 
 )
 
-SELECT 
-    products.product_id
-  , products.product_name
-  , COALESCE(base.product_sessions, 0) AS product_sessions
-  , COALESCE(base.product_added_to_cart, 0) AS product_added_to_cart
-  , COALESCE(base.orders, 0) AS orders
-  , (product_added_to_cart::float4 / product_sessions::float4) * 100 AS conversion_rate
+SELECT *
 
-FROM products 
-LEFT JOIN base
-  ON products.product_id = base.product_id
+FROM base

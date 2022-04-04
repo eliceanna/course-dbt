@@ -26,6 +26,7 @@ FROM base
 _What is our conversion rate by product?_
 
 **Answer:**
+
 +---------------------+--------------------+
 | Bird of Paradise    | 55.000001192092896 |  
 +---------------------+--------------------+
@@ -88,6 +89,7 @@ _What is our conversion rate by product?_
 | String of pearls    | 68.75              |
 +---------------------+--------------------+
 
+```
 ## Part 2
 
 **Answer:** 

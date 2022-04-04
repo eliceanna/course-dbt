@@ -21,4 +21,15 @@ models:
       - name: session_duration_minutes
         description: the duration of the session in minutes
 
-  
+exposures:
+  - name: product_funnel 
+    type: dashboard 
+    maturity: high 
+    description: Session funnel metircs
+    depends_on:
+      - ref('fct_sessions')
+      - ref('stg_events')
+
+    owner:
+      name: Elisaveta Aleksieva
+      email: elisaveta.aleksieva@gmail.com  
